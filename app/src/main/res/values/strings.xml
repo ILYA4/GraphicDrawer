@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">GraphicDrawer</string>
+
+    <string name="points_count_text">Введите количество точек</string>
+    <string name="request_points_button_text">Поехали!</string>
+</resources>
