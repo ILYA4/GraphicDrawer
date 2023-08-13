@@ -4,7 +4,8 @@ import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.chitneev.graphicdrawer.domain.repository.PointsRepository
+import com.chitneev.graphicdrawer.domain.usecase.FetchPointsUseCase
+import com.chitneev.graphicdrawer.navigation.Graph
 import com.chitneev.graphicdrawer.ui.screens.graph.state.UiState
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
@@ -17,27 +18,34 @@ class GraphViewModel(
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
-    private val repository: PointsRepository = PointsRepository()
+    private val fetchPointsUseCase = FetchPointsUseCase()
 
-    private val logTag = "GraphViewModel"
+    private val logTag = this.javaClass.name
 
-    private var countOfPoints: Int = checkNotNull(savedStateHandle["count_point_arg"])
+    private var countOfPoints: Int = checkNotNull(savedStateHandle[Graph.countPointTypeArg])
 
-    private var _state = MutableStateFlow(UiState.initial)
+    private var _state = MutableStateFlow<UiState>(UiState.initial)
     val state = _state.asStateFlow()
 
-    init {
-        viewModelScope.launch(
-            CoroutineExceptionHandler { _, throwable ->
-                Log.e(logTag, throwable.message ?: "")
-            }
-        ) {
+    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+        Log.e(logTag, throwable.message ?: "")
+        _state.value = UiState.Error(throwable.message ?: "")
+    }
+
+    fun requestPoints() {
+        viewModelScope.launch(exceptionHandler) {
+            _state.value = UiState.Loading
             val points = withContext(context = Dispatchers.IO) {
-                repository.getPoints(countOfPoints)
+                fetchPointsUseCase(countOfPoints)
             }
+                .sortedBy { it.x }
             Log.d(logTag, "points: $points")
-            _state.value = state.value.copy(points = points)
+            _state.value = UiState.Success(points = points)
         }
+    }
+
+    init {
+        requestPoints()
     }
 
 }

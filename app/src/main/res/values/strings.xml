@@ -3,4 +3,11 @@
 
     <string name="points_count_text">Введите количество точек</string>
     <string name="request_points_button_text">Поехали!</string>
+    <string name="error_text">Произошла ошибка при загрузке точек: %s Повторите попытку.</string>
+    <string name="retry_request_button_text">Повторить попытку!</string>
+    <string name="count_point_more_than_zero">Число должно быть целым и больше нуля</string>
+
+    <string name="table_empty">~</string>
+    <string name="table_x">x</string>
+    <string name="table_y">y</string>
 </resources>

@@ -68,6 +68,10 @@ dependencies {
     implementation(libs.coroutines)
     implementation(libs.viewmodel.ktx)
 
+    implementation(libs.vico.chart.core)
+    implementation(libs.vico.chart.compose)
+    implementation(libs.vico.chart.compose.m3)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
