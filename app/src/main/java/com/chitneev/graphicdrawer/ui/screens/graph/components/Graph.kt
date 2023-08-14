@@ -27,7 +27,7 @@ fun Graph(
         model = chartEntryModel,
         startAxis = rememberStartAxis(),
         bottomAxis = rememberBottomAxis(),
-        getXStep = { model -> (model.minX + model.maxX) / points.size },
+        getXStep = { _ -> 10f },
         modifier = modifier
     )
 }
@@ -37,8 +37,8 @@ fun Graph(
 private fun GraphPreview() {
     val points = listOf(
         Point(1.0,2.0),
-        Point(4.0,1.0),
-        Point(4.4,3.0),
+        Point(3.0,1.0),
+        Point(4.0,3.0),
         Point(5.0,15.0),
         Point(6.0, 22.04),
         )

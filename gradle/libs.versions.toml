@@ -14,6 +14,9 @@ gson = "2.3.0"
 coroutines = "1.6.4"
 lifecycle-ktx = "2.6.1"
 vico-chart = "1.9.2"
+hilt = "2.47"
+hilt-navigation = "1.0.0"
+hilt-gradle-plugin = "2.47"
 
 
 
@@ -33,6 +36,9 @@ ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 material3 = { group = "androidx.compose.material3", name = "material3" }
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose"}
+hilt = { group ="com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group ="com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation" }
 
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "gson" }
@@ -47,6 +53,8 @@ vico-chart-compose-m3 = { group = "com.patrykandpatrick.vico", name = "compose-m
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt" , version.ref = "org-jetbrains-kotlin-android" }
+hilt-android-gradle-plugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt-gradle-plugin"}
 
 [bundles]
 

@@ -5,8 +5,9 @@ import com.chitneev.graphicdrawer.data.service.PointsService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
+import javax.inject.Inject
 
-class PointsRepositoryImpl : PointsRepository {
+class PointsRepositoryImpl @Inject constructor() : PointsRepository {
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
