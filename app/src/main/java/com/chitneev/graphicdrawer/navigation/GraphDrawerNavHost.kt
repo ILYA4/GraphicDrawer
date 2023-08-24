@@ -19,15 +19,14 @@ fun GraphDrawerNavHost(
         modifier = modifier
     ) {
         composable(route = Main.route) {
-            MainScreen(onNavigateToGraphScreen = { countPoints ->
+            MainScreen(onNavigateToGraphScreen = {
                 navController.navigate(
-                    route = "${Graph.route}/$countPoints",
+                    route = Graph.route,
                 )
             })
         }
         composable(
-            route = Graph.routeWithArgs,
-            arguments = Graph.arguments,
+            route = Graph.route,
         ) {
             GraphScreen()
         }

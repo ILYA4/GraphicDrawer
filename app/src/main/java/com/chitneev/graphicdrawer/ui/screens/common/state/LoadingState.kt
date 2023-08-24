@@ -1,4 +1,4 @@
-package com.chitneev.graphicdrawer.ui.screens.graph.state
+package com.chitneev.graphicdrawer.ui.screens.common.state
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

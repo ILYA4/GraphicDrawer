@@ -1,14 +1,14 @@
 package com.chitneev.graphicdrawer.domain.usecase
 
 import com.chitneev.graphicdrawer.data.repository.PointsRepository
+import com.chitneev.graphicdrawer.domain.models.Point
 import javax.inject.Inject
 
-class FetchPointsUseCase @Inject constructor(
+class GetCachedPointsUseCase @Inject constructor(
     private val repository: PointsRepository,
 ) {
 
-    suspend operator fun invoke(countOfPoints: Int) {
-        repository.fetchPoints(countOfPoints)
-    }
+    operator fun invoke(): List<Point> =
+        repository.getCachedPoints()
 
 }

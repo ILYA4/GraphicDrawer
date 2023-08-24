@@ -7,9 +7,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.chitneev.graphicdrawer.R
 import com.chitneev.graphicdrawer.domain.models.Point
 import com.chitneev.graphicdrawer.ui.screens.graph.state.ErrorState
-import com.chitneev.graphicdrawer.ui.screens.graph.state.LoadingState
+import com.chitneev.graphicdrawer.ui.screens.common.state.LoadingState
 import com.chitneev.graphicdrawer.ui.screens.graph.state.SuccessState
 import com.chitneev.graphicdrawer.ui.screens.graph.state.UiState
 import com.chitneev.graphicdrawer.ui.theme.GraphicDrawerTheme
@@ -27,7 +28,7 @@ fun GraphScreen() {
        onRetryClick = { vm.requestPoints() },
        onBitmapCreated = {
            vm.saveBitmap(it)
-           Toast.makeText(context, "Файл сохранен", Toast.LENGTH_SHORT).show()
+           Toast.makeText(context, context.getText(R.string.file_saved), Toast.LENGTH_SHORT).show()
        }
    )
 }

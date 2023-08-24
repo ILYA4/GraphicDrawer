@@ -1,7 +1,8 @@
 package com.chitneev.graphicdrawer.data.repository
 
-import com.chitneev.graphicdrawer.data.models.PointDto
+import com.chitneev.graphicdrawer.domain.models.Point
 
 interface PointsRepository {
-    suspend fun getPoints(count: Int) : List<PointDto>
+    suspend fun fetchPoints(count: Int) : List<Point>
+    fun getCachedPoints(): List<Point>
 }
