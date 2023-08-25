@@ -1,5 +1,6 @@
-package com.chitneev.graphicdrawer.data.storage
+package com.chitneev.graphicdrawer.data.storage.impl
 
+import com.chitneev.graphicdrawer.data.storage.PointsMemoryStorage
 import com.chitneev.graphicdrawer.domain.models.Point
 import javax.inject.Inject
 

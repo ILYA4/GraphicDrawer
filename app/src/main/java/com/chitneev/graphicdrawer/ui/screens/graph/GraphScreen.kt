@@ -3,6 +3,7 @@ package com.chitneev.graphicdrawer.ui.screens.graph
 import android.graphics.Bitmap
 import android.widget.Toast
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
@@ -11,9 +12,11 @@ import com.chitneev.graphicdrawer.R
 import com.chitneev.graphicdrawer.domain.models.Point
 import com.chitneev.graphicdrawer.ui.screens.graph.state.ErrorState
 import com.chitneev.graphicdrawer.ui.screens.common.state.LoadingState
+import com.chitneev.graphicdrawer.ui.screens.graph.state.Event
 import com.chitneev.graphicdrawer.ui.screens.graph.state.SuccessState
 import com.chitneev.graphicdrawer.ui.screens.graph.state.UiState
 import com.chitneev.graphicdrawer.ui.theme.GraphicDrawerTheme
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun GraphScreen() {
@@ -23,12 +26,28 @@ fun GraphScreen() {
 
     val context = LocalContext.current
 
+    LaunchedEffect(key1 = vm)  {
+        vm.events.collectLatest {
+            when(it) {
+                is Event.ShowErrorSavingGraphToast -> {
+                    Toast
+                        .makeText(context, context.getString(R.string.file_not_saved_error, it.errorMessage), Toast.LENGTH_SHORT)
+                        .show()
+                }
+                is Event.ShowSuccessSavingGraphToast -> {
+                    Toast
+                        .makeText(context, context.getString(R.string.file_saved, it.fileName), Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        }
+    }
+
     Content(
        state = state,
        onRetryClick = { vm.requestPoints() },
        onBitmapCreated = {
            vm.saveBitmap(it)
-           Toast.makeText(context, context.getText(R.string.file_saved), Toast.LENGTH_SHORT).show()
        }
    )
 }

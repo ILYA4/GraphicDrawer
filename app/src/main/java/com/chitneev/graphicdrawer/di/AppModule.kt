@@ -3,7 +3,7 @@ package com.chitneev.graphicdrawer.di
 import com.chitneev.graphicdrawer.data.repository.PointsRepository
 import com.chitneev.graphicdrawer.data.repository.PointsRepositoryImpl
 import com.chitneev.graphicdrawer.data.storage.PointsMemoryStorage
-import com.chitneev.graphicdrawer.data.storage.PointsMemoryStorageImpl
+import com.chitneev.graphicdrawer.data.storage.impl.PointsMemoryStorageImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
